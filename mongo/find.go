@@ -72,12 +72,10 @@ func (c *MongoClient) Find(ctx context.Context, database, name string, filter bs
 
 	var totalValue any
 	if len(metadata) != 0 {
-		switch metadata[0].(type) {
+		switch metadataRoot := metadata[0].(type) {
 		case bson.D: 
-			metadataRoot := metadata[0].(bson.D)
 			totalValue, _ = commons.BsonDGetAny(metadataRoot, "total")
 		case bson.M:
-			metadataRoot := metadata[0].(bson.M)
 			totalValue = metadataRoot["total"]
 		}
 	}
@@ -172,12 +170,10 @@ func (c *MongoClient) FindOffset(ctx context.Context, database, name string, fil
 
 	var totalValue any
 	if len(metadata) != 0 {
-		switch metadata[0].(type) {
+		switch metadataRoot := metadata[0].(type) {
 		case bson.D: 
-			metadataRoot := metadata[0].(bson.D)
 			totalValue, _ = commons.BsonDGetAny(metadataRoot, "total")
 		case bson.M:
-			metadataRoot := metadata[0].(bson.M)
 			totalValue = metadataRoot["total"]
 		}
 	}

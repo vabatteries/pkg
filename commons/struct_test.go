@@ -96,9 +96,8 @@ func TestStructToMapRecursive(t *testing.T) {
 
   mAny := StructToMapRecursive(o)
 
-  switch mAny.(type) {
+  switch m := mAny.(type) {
   case map[string]any:
-      m := mAny.(map[string]any)
       if v, ok := m["Name"]; !ok || v != "Nick" {
         t.Fatalf("Unexpected map %v", v)
       }

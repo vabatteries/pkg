@@ -25,7 +25,7 @@ func StringNormalize(s string) string {
   return strings.TrimSpace(s)
 }
 
-//StringIsBlank checks if a string is blank. Will trim the string before the check takes place.
+// StringIsBlank checks if a string is blank. Will trim the string before the check takes place.
 func StringIsBlank(s string) bool {
   return len(strings.TrimSpace(s)) == 0
 }

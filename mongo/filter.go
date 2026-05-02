@@ -21,14 +21,12 @@ func makeFilter(name string, value any) *Filter {
 
 	var v string
 
-	switch value.(type) {
+	switch val := value.(type) {
 	case string:
 		op = "eq"
-		v = value.(string)
+		v = val
 	case bson.M:
-		vMap := value.(bson.M)
-
-		for kk, vv := range vMap {
+		for kk, vv := range val {
 			op = kk
 			v = vv.(string)
 
@@ -36,9 +34,7 @@ func makeFilter(name string, value any) *Filter {
 		}
 		
 	case map[string]any:
-		vMap := value.(map[string]any)
-
-		for kk, vv := range vMap {
+		for kk, vv := range val {
 			op = kk
 			v = vv.(string)
 

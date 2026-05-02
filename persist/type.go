@@ -15,7 +15,7 @@ type User struct {
 }
 
 const ACCOUNT_COLLECTION = "account"
-// Deprecate: use core.BusinessAccount
+// Deprecated: use core.BusinessAccount
 type Account struct {
 	Id          string `bson:"_id" json:"id"`
 	Code        string `bson:"code" json:"code"`

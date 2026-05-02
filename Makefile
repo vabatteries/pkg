@@ -8,31 +8,31 @@ help: ## This help.
 GCFLAGS=
 LDFLAGS_EXTRA=
 
-clean:
+clean: ## Clean workspace
 	rm coverage.out && true
 
-lint:
+lint: ## Lint code
 	go-critic check ./... || true
 
 debug-test: ## Debug test with dlv
 	dlv test -- -test.v
 
-connect:
+connect: ## Connect to debug
 	dlv connect 127.0.0.1:36666
 
-test:
+test: ## Run tests
 	go test \
 	-failfast \
 	-race ./... -v
 
-test-watch:
+test-watch: ## Watch tests
 	gotestsum \
 	--watch \
 	-- \
 	-failfast \
 	./...
 
-cover:
+cover: ## Run covarage
 	go test -coverprofile=coverage.out
 	go tool cover -func=coverage.out
 	@rm coverage.out

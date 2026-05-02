@@ -41,10 +41,9 @@ func ensureExistingCreatedAt(data bson.M, old bson.M) time.Time {
 	var cAt time.Time
 	cAtAny, ok := old["createdAt"]
 	if ok {
-		switch cAtAny.(type) {
+		switch val := cAtAny.(type) {
 		case bson.DateTime:
-			cAtBson := cAtAny.(bson.DateTime)
-			cAt = cAtBson.Time()
+			cAt = val.Time()
 		default:
 			cAt = cAtAny.(time.Time)
 		}

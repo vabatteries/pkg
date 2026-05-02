@@ -9,9 +9,9 @@ import (
 
 func EncodeCursor(v any) string {
 	var id string
-	switch v.(type) {
+	switch val := v.(type) {
 	case bson.ObjectID:
-		id = v.(bson.ObjectID).Hex()
+		id = val.Hex()
 	default:
 		id = v.(string)
 	}

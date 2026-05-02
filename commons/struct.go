@@ -307,10 +307,9 @@ func MapToStruct(m map[string]any, o any) error {
 }
 
 func BsonAnyToMap(v any) any {
-	switch v.(type) {
+	switch val := v.(type) {
 	case bson.D:
 		m := map[string]any{}
-		val := v.(bson.D)
 		for _, elem := range val {
 			m[elem.Key] = BsonAnyToMap(elem.Value)
 		}
@@ -318,20 +317,17 @@ func BsonAnyToMap(v any) any {
 
 	case bson.M:
 		m := map[string]any{}
-		val := v.(bson.M)
 		for k, v2 := range val {
 			m[k] = BsonAnyToMap(v2)
 		}
 		return m
 	case map[string]any:
 		m := map[string]any{}
-		val := v.(map[string]any)
 		for i, v2 := range val {
 			m[i] = BsonAnyToMap(v2)
 		}
 		return m
 	case bson.A:
-		val := v.(bson.A)
 		arr := make([]any, len(val))
 		for i, v2 := range val {
 			arr[i] = BsonAnyToMap(v2)
